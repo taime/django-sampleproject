@@ -1,67 +1,15 @@
-{% extends 'base/base_registration.html' %}
+{% extends "base.html" %}
 {% load i18n %}
 
 {% block content %}
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form.as_p }}
 
+  <input type="submit" value="{% trans 'Log in' %}" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
 
-
-   <div class="container">
-       <div class="row">
-           <div class="col-md-4 col-md-offset-4">
-               <div class="login-panel panel panel-default">
-                   <div class="panel-heading">
-                       <h3 class="panel-title">Выполните вход</h3>
-                   </div>
-                   <div class="panel-body">
-                       {% if form.errors %}
-                       <p>Имя пользователя или пароль введены неверно.</p>
-                       {% endif %}
-                       <form role="form"  method="post" action="{% url 'login' %}">
-                           {% csrf_token %}
-                           <fieldset>
-                               <div class="form-group">
-                                   <input class="form-control" placeholder="Имя пользователя" name="username" type="email" autofocus>
-                                   <!-- {{ form.username.label_tag }} </br>
-                                   {{ form.username }} -->
-                               </div>
-                               <div class="form-group">
-                                   <input class="form-control" placeholder="Пароль" name="password" type="password" value="">
-                                   <!-- {{ form.password.label_tag }} </br>
-                                   {{ form.password }} -->
-                               </div>
-                               <div class="checkbox">
-                                   <label>
-                                       <input name="remember" type="checkbox" value="Remember Me">Запомнить меня
-                                   </label>
-                               </div>
-                               <!-- Change this to a button or input when using this as a form -->
-                               <!-- <a href="index.html" class="btn btn-lg btn-success btn-block">Войти</a> -->
-                               <input type="submit" value="Вход в аккаунт" />
-                               <input type="button" value="Регистрация" onclick="location.href='/accounts/register';"/>
-                               <input type="hidden" name="next" value="{{ next }}" />
-                           </fieldset>
-                       </form>
-                        </br>
-                       <!-- <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p> -->
-                       <p>Забыли пароль? <a href="{% url 'auth_password_reset' %}">Сбросить пароль</a>!</p>
-                       <!-- <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p> -->
-                       <!-- <p>Еще нет аккаунта? <a href="{% url 'registration_register' %}">Регистрация</a>!</p> -->
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
 {% endblock %}

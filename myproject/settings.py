@@ -34,18 +34,22 @@ INSTALLED_APPS = [
     # 'registration', # its' very important this string to be upper than contrib.auth and and contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
-    #allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    #allauth providers
-    'allauth.socialaccount.providers.facebook',
-    #django default
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #django sites, need for allauth
+    'django.contrib.sites',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #allauth providers
+    'allauth.socialaccount.providers.facebook',
+
     # 'crispy_forms',
     # 'bootstrapform',
     'mysite'
@@ -81,14 +85,6 @@ TEMPLATES = [
         },
     },
 ]
-
-AUTHENTICATION_BACKENDS = (
-
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
 
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
@@ -142,6 +138,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# django allauth settings
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+
+
+
+
 
 
 # # django-register settings
